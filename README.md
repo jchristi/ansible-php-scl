@@ -1,5 +1,7 @@
 # PHP 5.5 SCL
 
+[![Build Status](https://travis-ci.org/unfinisheddev/ansible-php-55-scl.svg?branch=master)](https://travis-ci.org/unfinisheddev/ansible-php-55-scl)
+
 An Ansible role to install PHP 5.5 from the Software Collections Library.
 
 ## Requirements
