@@ -1,0 +1,28 @@
+---
+
+- name: PHP 5.5 SCL | install php 5.5 packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: php55_scl_php_packages
+  when: php55_scl_install_php
+  tags:
+    - scl
+    - php
+    - php55
+    - yum
+
+- name: PHP 5.5 SCL | set php 5.5 to be available globally
+  lineinfile:
+    dest: "{{ php55_scl_profile_d_directory }}/php55.sh"
+    state: present
+    line: "source /opt/rh/php55/enable"
+    create: yes
+    owner: root
+    group: root
+    mode: 0755
+  when: php55_scl_enable_globally
+  tags:
+    - scl
+    - php
+    - php55

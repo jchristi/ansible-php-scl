@@ -1,0 +1,37 @@
+---
+
+- name: PHP 5.5 SCL | add section for compatibility in ini files
+  lineinfile:
+    dest: "{{ item.0.file }}"
+    state: present
+    regexp: '(?i)^\[{{ item.1.section }}\]$'
+    insertbefore: 'BOF'
+    line: "[{{ item.1.section }}]"
+  with_subelements:
+    - php55_scl_configure_options
+    - values
+  when: php55_scl_configure
+  tags:
+    - scl
+    - php
+    - php55
+    - config
+    - configuration
+
+- name: PHP 5.5 SCL | configure php ini files
+  ini_file:
+    dest: "{{ item.0.file }}"
+    section: "{{ item.1.section }}"
+    option: "{{ item.1.key }}"
+    value: "{{ item.1.value }}"
+    backup: "{{ php55_scl_backup_ini_files }}"
+  with_subelements:
+    - php55_scl_configure_options
+    - values
+  when: php55_scl_configure
+  tags:
+    - scl
+    - php
+    - php55
+    - config
+    - configuration

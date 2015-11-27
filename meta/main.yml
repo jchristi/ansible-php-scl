@@ -1,0 +1,19 @@
+---
+
+galaxy_info:
+  author: Dave Kirk (http://unfinisheddev.com)
+  description: An Ansible role to install PHP 5.5 from the Software Collections Library.
+  company: http://unfinisheddev.com
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+
+  categories:
+    - system
+    - web
+
+dependencies: []
