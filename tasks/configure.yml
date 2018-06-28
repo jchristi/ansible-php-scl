@@ -1,12 +1,6 @@
 ---
 
-- name: PHP SCL | add section for compatibility in ini files
-  lineinfile:
-    dest: "{{ item.0.file }}"
-    state: present
-    regexp: '(?i)^\[{{ item.1.section }}\]$'
-    insertbefore: 'BOF'
-    line: "[{{ item.1.section }}]"
+- name: PHP SCL | configure
   with_subelements:
     - php_scl_configure_options
     - values
@@ -14,24 +8,21 @@
   tags:
     - scl
     - php
-    - php
     - config
     - configuration
+  block:
+    - name: PHP SCL | add section for compatibility in ini files
+      lineinfile:
+        dest: "{{ item.0.file }}"
+        state: present
+        regexp: '(?i)^\[{{ item.1.section }}\]$'
+        insertbefore: 'BOF'
+        line: "[{{ item.1.section }}]"
 
-- name: PHP SCL | configure php ini files
-  ini_file:
-    dest: "{{ item.0.file }}"
-    section: "{{ item.1.section }}"
-    option: "{{ item.1.key }}"
-    value: "{{ item.1.value }}"
-    backup: "{{ php_scl_backup_ini_files }}"
-  with_subelements:
-    - php_scl_configure_options
-    - values
-  when: php_scl_configure
-  tags:
-    - scl
-    - php
-    - php
-    - config
-    - configuration
+    - name: PHP SCL | configure php ini files
+      ini_file:
+        dest: "{{ item.0.file }}"
+        section: "{{ item.1.section }}"
+        option: "{{ item.1.key }}"
+        value: "{{ item.1.value }}"
+        backup: "{{ php_scl_backup_ini_files }}"

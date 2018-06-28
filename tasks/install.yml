@@ -15,7 +15,7 @@
   lineinfile:
     dest: "{{ php_scl_profile_d_directory }}/php.sh"
     state: present
-    line: "source /opt/rh/*php*/enable"
+    line: "source /opt/rh/{{ php_scl_name }}/enable"
     create: yes
     owner: root
     group: root
@@ -24,3 +24,9 @@
   tags:
     - scl
     - php
+
+# - name: PHP SCL | symlink PHP SCL => /usr/bin/php
+#   file:
+#     state: link
+#   when: php_scl_symlink_bin
+#   tags: []

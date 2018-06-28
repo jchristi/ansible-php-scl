@@ -1,5 +1,8 @@
 ---
 
+# The name of the SCL
+php_scl_name: php56
+
 # Should this role install the Software Collections Library repo?
 #
 # yes | no
@@ -12,7 +15,7 @@ php_scl_scl_utils_packages:
   - scl-utils
 
 # Full URL of the RPM to install if `php_scl_install_scl_repo` is set to yes
-php_scl_scl_repo_url: "https://www.softwarecollections.org/en/scls/rhscl/php56/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/download/rhscl-php56-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}.noarch.rpm"
+php_scl_scl_repo_url: "https://www.softwarecollections.org/en/scls/rhscl/{{ php_scl_name }}/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/download/rhscl-{{ php_scl_name }}-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}.noarch.rpm"
 
 # Should this role install the PHP packages?
 #
@@ -23,8 +26,8 @@ php_scl_install_php: yes
 #
 # Packages are only installed if `php_scl_install_php` is set to yes
 php_scl_php_packages:
-  - php56
-  - php56-php-cli
+  - "{{ php_scl_name }}"
+  - "{{ php_scl_name }}-php-cli"
 
 # Should this role manage the configuration of PHP?
 #
@@ -43,7 +46,7 @@ php_scl_timezone: UTC
 #     - { section: ini_section, key: config_key, value: config_value }
 #     - { section: ini_section, key: config_key2, value: another_value }
 php_scl_configure_options:
-  - file: /opt/rh/php56/root/etc/php.ini
+  - file: "/opt/rh/{{ php_scl_name }}/root/etc/php.ini"
     values:
       - { section: date, key: date.timezone, value: "{{ php_scl_timezone }}" }
 
@@ -59,6 +62,6 @@ php_scl_enable_globally: no
 
 # Absolute path to the profile.d directory.
 #
-# This is used to add a script that will enable PHP 5.5 for all users if
+# This is used to add a script that will enable PHP for all users if
 # `php_scl_enable_globally` is `yes`|`true`
 php_scl_profile_d_directory: /etc/profile.d
