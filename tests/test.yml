@@ -3,4 +3,4 @@
 - hosts: containers
   sudo: yes
   roles:
-    - ansible-php-55-scl
+    - ansible-php-scl

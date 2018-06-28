@@ -1,24 +1,22 @@
 ---
 
-- name: PHP 5.5 SCL | ensure scl-utils are installed
+- name: PHP SCL | ensure scl-utils are installed
   yum:
     name: "{{ item }}"
     state: installed
-  with_items: php55_scl_scl_utils_packages
-  when: php55_scl_install_scl_repo
+  with_items: php_scl_scl_utils_packages
+  when: php_scl_install_scl_repo
   tags:
     - scl
     - php
-    - php55
     - yum
 
-- name: PHP 5.5 SCL | install php 5.5 scl repository
+- name: PHP SCL | install php scl repository
   yum:
-    name: "{{ php55_scl_scl_repo_url }}"
+    name: "{{ php_scl_scl_repo_url }}"
     state: installed
-  when: php55_scl_install_scl_repo
+  when: php_scl_install_scl_repo
   tags:
     - scl
     - php
-    - php55
     - yum

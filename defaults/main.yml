@@ -3,62 +3,62 @@
 # Should this role install the Software Collections Library repo?
 #
 # yes | no
-php55_scl_install_scl_repo: yes
+php_scl_install_scl_repo: yes
 
 # List of packages to install for SCL utils
 #
-# The packages will only be installed if `php55_scl_install_scl_repo` is set to yes
-php55_scl_scl_utils_packages:
+# The packages will only be installed if `php_scl_install_scl_repo` is set to yes
+php_scl_scl_utils_packages:
   - scl-utils
 
-# Full URL of the RPM to install if `php55_scl_install_scl_repo` is set to yes
-php55_scl_scl_repo_url: "https://www.softwarecollections.org/en/scls/rhscl/php55/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/download/rhscl-php55-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}.noarch.rpm"
+# Full URL of the RPM to install if `php_scl_install_scl_repo` is set to yes
+php_scl_scl_repo_url: "https://www.softwarecollections.org/en/scls/rhscl/php56/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/download/rhscl-php56-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}.noarch.rpm"
 
 # Should this role install the PHP packages?
 #
 # yes | no
-php55_scl_install_php: yes
+php_scl_install_php: yes
 
 # List of packages this role should install
 #
-# Packages are only installed if `php55_scl_install_php` is set to yes
-php55_scl_php_packages:
-  - php55
-  - php55-php-cli
+# Packages are only installed if `php_scl_install_php` is set to yes
+php_scl_php_packages:
+  - php56
+  - php56-php-cli
 
 # Should this role manage the configuration of PHP?
 #
 # yes | no
-php55_scl_configure: yes
+php_scl_configure: yes
 
 # Timezone to set in the php.ini file
-php55_scl_timezone: UTC
+php_scl_timezone: UTC
 
 # List of configuration files and options to insert
 #
-# Will only be added if `php55_scl_configure is `yes`|`true`
+# Will only be added if `php_scl_configure is `yes`|`true`
 #
 # - file: /absolute/file/path.ini
 #   values:
 #     - { section: ini_section, key: config_key, value: config_value }
 #     - { section: ini_section, key: config_key2, value: another_value }
-php55_scl_configure_options:
-  - file: /opt/rh/php55/root/etc/php.ini
+php_scl_configure_options:
+  - file: /opt/rh/php56/root/etc/php.ini
     values:
-      - { section: date, key: date.timezone, value: "{{ php55_scl_timezone }}" }
+      - { section: date, key: date.timezone, value: "{{ php_scl_timezone }}" }
 
 # Should the role create a backup of the ini files before overwriting?
 #
 # yes | no
-php55_scl_backup_ini_files: yes
+php_scl_backup_ini_files: yes
 
 # Should we enable PHP 5.5 for all users?
 #
 # yes | no
-php55_scl_enable_globally: no
+php_scl_enable_globally: no
 
 # Absolute path to the profile.d directory.
 #
 # This is used to add a script that will enable PHP 5.5 for all users if
-# `php55_scl_enable_globally` is `yes`|`true`
-php55_scl_profile_d_directory: /etc/profile.d
+# `php_scl_enable_globally` is `yes`|`true`
+php_scl_profile_d_directory: /etc/profile.d

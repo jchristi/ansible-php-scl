@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     app.vm.hostname = 'centos6'
     app.vm.network :private_network, :ip => '172.20.202.2'
     app.vm.provider :virtualbox do |vb|
-      vb.name = "php-55-scl-centos6"
+      vb.name = "php-scl-centos6"
     end
 
     app.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     app.vm.hostname = 'centos7'
     app.vm.network :private_network, :ip => '172.20.202.3'
     app.vm.provider :virtualbox do |vb|
-      vb.name = "php-55-scl-centos7"
+      vb.name = "php-scl-centos7"
     end
 
     app.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true

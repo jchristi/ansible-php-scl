@@ -49,7 +49,7 @@ function test_playbook(){
 }
 function extra_tests(){
     # run extra tests
-    source /opt/rh/php55/enable && php -v | grep -q '5.5.*'
+    #source /opt/rh/*php*/enable && php -v | grep -q '5.5.*'
 }
 
 
