@@ -8,8 +8,7 @@ services:
 
 env:
   #matrix
-  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=1.9.2
-  - OS_TYPE=centos OS_VERSION=6 ANSIBLE_VERSION=1.9.2
+  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=2.5.0
 
 before_install:
   - sudo apt-get update
@@ -21,4 +20,4 @@ before_install:
 
 
 script:
-  - sudo docker run --privileged=true --rm=true -v `pwd`:/ansible-php-55-scl:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/ansible-php-55-scl/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
+  - sudo docker run --privileged=true --rm=true -v `pwd`:/ansible-php-scl:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/ansible-php-scl/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"

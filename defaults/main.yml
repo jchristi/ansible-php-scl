@@ -52,7 +52,7 @@ php_scl_configure_options:
 # yes | no
 php_scl_backup_ini_files: yes
 
-# Should we enable PHP 5.5 for all users?
+# Should we enable PHP for all users?
 #
 # yes | no
 php_scl_enable_globally: no
