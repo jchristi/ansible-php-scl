@@ -3,7 +3,6 @@
 galaxy_info:
   author: Jeremy Christian (jeremy.d.christian@gmail.com)
   description: An Ansible role to install PHP from the Software Collections Library.
-  company: 
   license: MIT
   min_ansible_version: 2.5
   platforms:
