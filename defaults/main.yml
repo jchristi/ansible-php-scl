@@ -1,12 +1,19 @@
 ---
+# PHP version
+php_version: php56
 
 # The name of the SCL
-php_scl_name: rh-php56
+php_scl_name: "rh-{{ php_version }}"
 
 # Should this role install the Software Collections Library repo?
 #
 # yes | no
 php_scl_install_scl_repo: yes
+
+# Should this role install the Software Collections Library remi repo?
+#
+# yes | no
+php_scl_install_remi_repo: yes
 
 # List of packages to install for SCL utils
 #
@@ -16,6 +23,9 @@ php_scl_scl_utils_packages:
 
 # Full URL of the RPM to install if `php_scl_install_scl_repo` is set to yes
 php_scl_scl_repo_url: "https://www.softwarecollections.org/repos/rhscl/{{ php_scl_name }}/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/noarch/rhscl-{{ php_scl_name }}-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}-1-2.noarch.rpm"
+
+# Full URL of the RPM to install if `php_scl_install_remi_repo` is set to yes
+php_scl_remi_repo_url: "https://www.softwarecollections.org/repos/remi/{{ php_version }}more/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/noarch/remi-{{ php_version }}more-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}-1-2.noarch.rpm"
 
 # Should this role install the PHP packages?
 #
@@ -78,6 +88,16 @@ php_scl_configure_options:
       - { section: MySQL, key: mysql.connect_timeout, value: "{{ php_mysql_connect_timeout }}" }
       - { section: date, key: date.timezone, value: "{{ php_scl_timezone }}" }
 
+# Should this role install the PHP more packages?
+#
+# yes | no
+php_scl_install_php_more: yes
+
+# List of packages this role should install
+#
+# Packages are only installed if `php_scl_install_php_more` is set to yes
+php_scl_php_more_packages:
+  - "more-{{ php_version }}-php-pecl-memcached"
 
 # Should the role create a backup of the ini files before overwriting?
 #

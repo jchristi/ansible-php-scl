@@ -11,6 +11,18 @@
     - php
     - yum
 
+- name: PHP SCL | install php more packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ php_scl_php_more_packages }}"
+  when: php_scl_install_php_more
+  tags:
+    - scl
+    - php
+    - yum
+    - more
+
 - name: PHP SCL | set php to be available globally
   lineinfile:
     dest: "{{ php_scl_profile_d_directory }}/php.sh"
