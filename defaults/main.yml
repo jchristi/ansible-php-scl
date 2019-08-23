@@ -1,7 +1,7 @@
 ---
 
 # The name of the SCL
-php_scl_name: php56
+php_scl_name: rh-php56
 
 # Should this role install the Software Collections Library repo?
 #
@@ -15,7 +15,7 @@ php_scl_scl_utils_packages:
   - scl-utils
 
 # Full URL of the RPM to install if `php_scl_install_scl_repo` is set to yes
-php_scl_scl_repo_url: "https://www.softwarecollections.org/en/scls/rhscl/{{ php_scl_name }}/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/download/rhscl-{{ php_scl_name }}-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}.noarch.rpm"
+php_scl_scl_repo_url: "https://www.softwarecollections.org/repos/rhscl/{{ php_scl_name }}/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/noarch/rhscl-{{ php_scl_name }}-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}-1-2.noarch.rpm"
 
 # Should this role install the PHP packages?
 #
@@ -27,7 +27,11 @@ php_scl_install_php: yes
 # Packages are only installed if `php_scl_install_php` is set to yes
 php_scl_php_packages:
   - "{{ php_scl_name }}"
+  - "{{ php_scl_name }}-php"
   - "{{ php_scl_name }}-php-cli"
+  - "{{ php_scl_name }}-php-pdo"
+  - "{{ php_scl_name }}-php-mysql"
+  - "{{ php_scl_name }}-php-gd"
 
 # Should this role manage the configuration of PHP?
 #
@@ -35,10 +39,22 @@ php_scl_php_packages:
 php_scl_configure: yes
 
 # Timezone to set in the php.ini file
-php_scl_timezone: UTC
+php_scl_timezone: America/New_York
 
 # List of configuration files and options to insert
-#
+
+php_realpath_cache_size: 512k
+php_realpath_cache_ttl: 3600
+php_max_execution_time: 60
+php_max_input_vars: 2000
+php_memory_limit: 512M
+php_error_reporting: E_ALL & ~E_DEPRECATED
+php_html_errors: Off
+php_post_max_size: 10M
+php_upload_max_filesize: 10M
+php_default_socket_timeout: 300
+php_mysql_connect_timeout: 300
+php_upload_tmp_dir: "/var/tmp"
 # Will only be added if `php_scl_configure is `yes`|`true`
 #
 # - file: /absolute/file/path.ini
@@ -46,9 +62,22 @@ php_scl_timezone: UTC
 #     - { section: ini_section, key: config_key, value: config_value }
 #     - { section: ini_section, key: config_key2, value: another_value }
 php_scl_configure_options:
-  - file: "/opt/rh/{{ php_scl_name }}/root/etc/php.ini"
+  - file: "/etc/opt/rh/{{ php_scl_name }}/php.ini"
     values:
+      - { section: PHP, key: realpath_cache_size, value: "{{ php_realpath_cache_size }}" }
+      - { section: PHP, key: realpath_cache_ttl, value: "{{ php_realpath_cache_ttl }}" }
+      - { section: PHP, key: max_execution_time, value: "{{ php_max_execution_time }}" }
+      - { section: PHP, key: max_input_vars, value: "{{ php_max_input_vars }}" }
+      - { section: PHP, key: memory_limit, value: "{{ php_memory_limit }}" }
+      - { section: PHP, key: error_reporting, value: "{{ php_error_reporting }}" }
+      - { section: PHP, key: html_errors, value: "{{ php_html_errors }}" }
+      - { section: PHP, key: post_max_size, value: "{{ php_post_max_size }}" }
+      - { section: PHP, key: upload_max_filesize, value: "{{ php_upload_max_filesize }}" }
+      - { section: PHP, key: upload_tmp_dir, value: "{{ php_upload_tmp_dir }}" }
+      - { section: PHP, key: default_socket_timeout, value: "{{ php_default_socket_timeout }}" }
+      - { section: MySQL, key: mysql.connect_timeout, value: "{{ php_mysql_connect_timeout }}" }
       - { section: date, key: date.timezone, value: "{{ php_scl_timezone }}" }
+
 
 # Should the role create a backup of the ini files before overwriting?
 #

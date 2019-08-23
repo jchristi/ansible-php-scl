@@ -11,7 +11,7 @@
       yum:
         name: "{{ item }}"
         state: installed
-      with_items: php_scl_scl_utils_packages
+      with_items: "{{ php_scl_scl_utils_packages }}"
 
     - name: PHP SCL | install php scl repository
       yum:

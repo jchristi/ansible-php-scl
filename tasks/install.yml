@@ -4,7 +4,7 @@
   yum:
     name: "{{ item }}"
     state: installed
-  with_items: php_scl_php_packages
+  with_items: "{{ php_scl_php_packages }}"
   when: php_scl_install_php
   tags:
     - scl
@@ -20,7 +20,7 @@
     owner: root
     group: root
     mode: 0755
-  when: php_scl_enable_globally
+  when: "{{ php_scl_enable_globally }}"
   tags:
     - scl
     - php
