@@ -1,0 +1,15 @@
+---
+
+- include: scl_repo.yml
+- include: install.yml
+- name: PHP SCL | configure
+  include: configure.yml
+  with_subelements:
+    - "{{ php_scl_configure_options }}"
+    - values
+  when: php_scl_configure
+  tags:
+    - scl
+    - php
+    - config
+    - configuration

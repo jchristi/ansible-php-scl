@@ -1,0 +1,32 @@
+---
+
+- name: PHP SCL | install php packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ php_scl_php_packages }}"
+  when: php_scl_install_php
+  tags:
+    - scl
+    - php
+    - yum
+
+- name: PHP SCL | set php to be available globally
+  lineinfile:
+    dest: "{{ php_scl_profile_d_directory }}/php.sh"
+    state: present
+    line: "source /opt/rh/{{ php_scl_name }}/enable"
+    create: yes
+    owner: root
+    group: root
+    mode: 0755
+  when: "{{ php_scl_enable_globally }}"
+  tags:
+    - scl
+    - php
+
+# - name: PHP SCL | symlink PHP SCL => /usr/bin/php
+#   file:
+#     state: link
+#   when: php_scl_symlink_bin
+#   tags: []

@@ -1,0 +1,6 @@
+---
+
+- hosts: containers
+  sudo: yes
+  roles:
+    - ansible-php-scl

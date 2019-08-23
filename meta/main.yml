@@ -1,0 +1,16 @@
+---
+
+galaxy_info:
+  author: Jeremy Christian (jeremy.d.christian@gmail.com)
+  description: An Ansible role to install PHP from the Software Collections Library.
+  license: MIT
+  min_ansible_version: 2.5
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  categories:
+    - system
+    - web
+
+dependencies: []

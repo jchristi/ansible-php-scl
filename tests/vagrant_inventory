@@ -1,0 +1,6 @@
+centos6     ansible_ssh_host=127.0.0.1       ansible_ssh_port=4446      ansible_ssh_user=vagrant    ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+centos7     ansible_ssh_host=127.0.0.1       ansible_ssh_port=4447      ansible_ssh_user=vagrant    ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+[containers]
+centos6
+centos7
