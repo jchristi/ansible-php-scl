@@ -37,7 +37,14 @@ php_scl_install_php: yes
 # Packages are only installed if `php_scl_install_php` is set to yes
 php_scl_php_packages:
   - "{{ php_scl_name }}"
-  - "{{ php_scl_name }}-php-cli"
+  - "{{ php_scl_name }}-php"
+  - "{{ php_scl_name }}-php-opcache"
+  - "{{ php_scl_name }}-php-xml"
+  - "{{ php_scl_name }}-php-mbstring"
+  - "{{ php_scl_name }}-php-pear"
+  - "{{ php_scl_name }}-php-soap"
+  - "{{ php_scl_name }}-php-pecl-jsonc"
+  - "{{ php_scl_name }}-php-process"
   - "{{ php_scl_name }}-php-pdo"
   - "{{ php_scl_name }}-php-mysql"
   - "{{ php_scl_name }}-php-gd"
