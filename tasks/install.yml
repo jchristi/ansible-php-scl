@@ -4,12 +4,24 @@
   yum:
     name: "{{ item }}"
     state: installed
-  with_items: php_scl_php_packages
+  with_items: "{{ php_scl_php_packages }}"
   when: php_scl_install_php
   tags:
     - scl
     - php
     - yum
+
+- name: PHP SCL | install php more packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ php_scl_php_more_packages }}"
+  when: php_scl_install_php_more
+  tags:
+    - scl
+    - php
+    - yum
+    - more
 
 - name: PHP SCL | set php to be available globally
   lineinfile:
@@ -20,7 +32,7 @@
     owner: root
     group: root
     mode: 0755
-  when: php_scl_enable_globally
+  when: "{{ php_scl_enable_globally }}"
   tags:
     - scl
     - php

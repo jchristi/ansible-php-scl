@@ -11,9 +11,20 @@
       yum:
         name: "{{ item }}"
         state: installed
-      with_items: php_scl_scl_utils_packages
+      with_items: "{{ php_scl_scl_utils_packages }}"
 
     - name: PHP SCL | install php scl repository
       yum:
         name: "{{ php_scl_scl_repo_url }}"
         state: installed
+
+- name: PHP SCL | install php scl remi repository
+  yum:
+    name: "{{ php_scl_remi_repo_url }}"
+    state: installed
+  when: php_scl_install_remi_repo
+  tags:
+    - remi
+    - php
+    - yum
+    - repo
